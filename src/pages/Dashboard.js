@@ -1,20 +1,15 @@
-
 import "../App.css";
-import App from "../components/App";
-import Nav from "./Nav";
-import QuestionsList from "./QuestionsList";
-import QuestionTabs from "./QuestionTabs";
-import Tabs from "./QuestionTabs";
+import QuestionsList from "../components/QuestionsList";
+import QuestionTabs from "../components/QuestionTabs";
 
 
 const Dashboard = () => {
 
 	return (
-		<App className = "app">
-			<Nav />
+		<div>
 			<QuestionTabs />
 			<QuestionsList />
-		</App>
+		</div>
 	);
 };
 

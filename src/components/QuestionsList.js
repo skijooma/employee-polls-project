@@ -5,7 +5,15 @@ import QuestionSummaryCard from "./QuestionSummaryCard";
 const QuestionsList = () => {
 
 	return (
-		<div>
+		<div className="questionsContainer">
+			<QuestionDetailsCard />
+			<QuestionDetailsCard />
+			<QuestionDetailsCard />
+			<QuestionDetailsCard />
+			<QuestionDetailsCard />
+			<QuestionDetailsCard />
+			<QuestionDetailsCard />
+			<QuestionDetailsCard />
 			<QuestionDetailsCard />
 			<QuestionDetailsCard />
 			<QuestionDetailsCard />

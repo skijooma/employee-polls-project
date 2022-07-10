@@ -43,7 +43,7 @@ const card = (
 
 export default function QuestionSummaryCard() {
 	return (
-		<Box sx={{ minWidth: 275 }}>
+		<Box sx={{ minWidth: 275 }} className="questionSummaryCard">
 			<Card variant="outlined">{card}</Card>
 		</Box>
 	);

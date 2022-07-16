@@ -12,15 +12,6 @@ import Nav from "./Nav";
 
 const App = () => {
 
-	// console.log("Starting...", props.dispatch(handleInitialData()));
-	// useEffect((props) => {
-	// 	console.log("Starting...", props)
-	// 	props.dispatch(handleInitialData());
-	// }, []);
-
-	// const users = useSelector(state => state.users);
-	// console.log("Starting...", users);
-
 	const dispatch = useDispatch();
 
 	useEffect(() => {

@@ -72,6 +72,26 @@ a {
   /*padding: 10px;*/
 }
 
+.ballotBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.ballot {
+  display: flex;
+  flex-direction: column;
+}
+
+.voteShare {
+  display: flex;
+  flex-direction: column;
+}
+
+.ballotText {
+  display: flex;
+  flex-direction: row;
+}
+
 /*.questionDetailsCard {*/
 /*  flex: 1 0 25%;*/
 /*  margin: 10px;*/

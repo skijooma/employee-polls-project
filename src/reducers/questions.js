@@ -1,5 +1,6 @@
 
-import { RECEIVE_QUESTIONS } from "../actions/questions";
+import { RECEIVE_QUESTIONS, ANSWER_QUESTION, SAVE_QUESTION_CHOICE } from "../actions/questions";
+import authedUser from "./authedUser";
 
 export default function questions(state = {}, action) {
 	switch (action.type) {
@@ -8,7 +9,44 @@ export default function questions(state = {}, action) {
 				...state,
 				...action.questions,
 			};
+		case SAVE_QUESTION_CHOICE:
+			console.log("STATE **** ", state)
+			return {
+				...state,
+				[action.qid]: {
+					...state[action.qid],
+					[action.answer]: state[action.qid][action.answer].votes.includes(action.authedUser) ?
+						state[action.qid][action.answer] :
+						{
+						...state[action.qid][action.answer],
+						votes: state[action.qid][action.answer].votes.concat([action.authedUser])
+					}
+				}
+			}
 		default:
 			return state;
 	}
 }
+
+// users = {
+// 	...users,
+// 	[authedUser]: {
+// 		...users[authedUser],
+// 		answers: {
+// 			...users[authedUser].answers,
+// 			[qid]: answer
+// 		}
+// 	}
+// }
+
+
+// questions = {
+// 	...questions,
+// 	[qid]: {
+// 		...questions[qid],
+// 		[answer]: {
+// 			...questions[qid][answer],
+// 			votes: questions[qid][answer].votes.concat([authedUser])
+// 		}
+// 	}
+// }

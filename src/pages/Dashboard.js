@@ -10,6 +10,7 @@ const Dashboard = () => {
 
 	const { questions, users, loading, authedUser, selectedTab } = useSelector(state => state);
 	const [questionsOnDisplay, setQuestionsOnDisplay] = useState(questions);
+	const wholeState = useSelector(state => state)
 	// const [selectedTab, setSelectedTab] = useState(2);
 
 	// console.log("Questions in Dashboard => ", questions);
@@ -17,6 +18,7 @@ const Dashboard = () => {
 	// console.log("Loading in Dashboard => ", loading);
 	// console.log("Authed user in Dashboard => ", authedUser);
 	// console.log("Selected tab in Dashboard => ", selectedTab);
+	console.log("Logging the whole state => ", wholeState)
 
 	useEffect(() => {
 		console.log("Selected tab in Dashboard => ", selectedTab);

@@ -9,7 +9,7 @@ const QuestionDetails = () => {
 	const {users, questions, authedUser, loading } = useSelector(state => state);
 	const { id } = useParams(); // QuestionId in route params.
 	const question = questions[id];
-	const user = users['tylermcginnis']
+	const user = users['tylermcginnis'];
 
 	console.log("Ques id in QDetails => ", id)
 	console.log("Question in QDetails => ", question)

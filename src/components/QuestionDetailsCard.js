@@ -29,16 +29,8 @@ export default function QuestionDetailsCard(props) {
 					subheader="September 14, 2016"
 				/>
 				<CardContent>
-					<BallotBox></BallotBox>
+					<BallotBox question = {props.question}/>
 				</CardContent>
-				{/*<CardActions disableSpacing>*/}
-				{/*	<IconButton aria-label="add to favorites">*/}
-				{/*		<FavoriteIcon />*/}
-				{/*	</IconButton>*/}
-				{/*	<IconButton aria-label="share">*/}
-				{/*		<ShareIcon />*/}
-				{/*	</IconButton>*/}
-				{/*</CardActions>*/}
 			</Card>
 		</div>
 	);

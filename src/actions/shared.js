@@ -1,8 +1,8 @@
-import { getInitialData } from "../utils/api";
+import { getInitialData, saveQuestionAnswer } from "../utils/api";
 import setAuthedUser from "./authedUser";
-import receiveQuestions from "./questions"
+import receiveQuestions, { handleQuestionChoice, saveQuestionChoice } from "./questions"
 import setSelectedTab from "./selectedTab";
-import receiveUsers from "./users";
+import receiveUsers, { handleUserAnswer, saveUserAnswer } from "./users";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 
@@ -20,4 +20,12 @@ export function handleInitialData() {
 			dispatch(hideLoading());
 		});
 	};
+}
+
+export function handleAnswerQuestion (info) {
+
+	return (dispatch) => {
+		dispatch(handleQuestionChoice(info));
+		dispatch(handleUserAnswer(info));
+	}
 }

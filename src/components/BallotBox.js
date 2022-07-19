@@ -1,7 +1,10 @@
 
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+// import { handleAnswerQuestion } from "../actions/questions";
+import { handleAnswerQuestion } from "../actions/shared";
 
 /*
 * 1. Radio buttons for selecting? -> One button for submit?.
@@ -12,32 +15,53 @@ import { Link } from "react-router-dom";
 *  */
 
 
-const BallotBox = () => {
+const BallotBox = (props) => {
+
+	const { authedUser } = useSelector(state => state);
+	const dispatch = useDispatch();
+
+	const handleVoteClick = (e) => {
+
+		console.log("Vote click => ", e.target.value);
+		dispatch(handleAnswerQuestion({
+			authedUser,
+			qid: props.question.id,
+			answer: e.target.value,
+		}));
+	}
 
 	return (
 		<div className="ballotBox">
 			<div className="ballot">
 				<div className="ballotText">
-					<Typography variant="body2" color="text.secondary">
-						Would you rather
-					</Typography>
-					<Typography variant="body2" color="text.secondary" className="voteShare">
-						81% (4)
-					</Typography>
+					<div className="voteQuestionText">
+						<Typography variant="body2" color="text.secondary">
+							{ props.question.optionOne.text }
+						</Typography>
+					</div>
+					<div className="voteShareMetrics">
+						<Typography variant="body2" color="text.secondary">
+							81% (4)
+						</Typography>
+					</div>
 				</div>
-				<Button size="small" >
+				<Button size="small" onClick={handleVoteClick} id="optionOne" value="optionOne">
 					Vote
 				</Button>
 			</div>
 
 			<div className="ballot">
 				<div className="ballotText">
-					<Typography variant="body2" color="text.secondary">
-						Would you rather
-					</Typography>
-					<Typography variant="body2" color="text.secondary" className="voteShare">
-						81% (4)
-					</Typography>
+					<div className="voteQuestionText">
+						<Typography variant="body2" color="text.secondary">
+							{ props.question.optionTwo.text }
+						</Typography>
+					</div>
+					<div className="voteShareMetrics">
+						<Typography variant="body2" color="text.secondary">
+							81% (4)
+						</Typography>
+					</div>
 				</div>
 				<Button size="small" >
 					Vote

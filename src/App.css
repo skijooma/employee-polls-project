@@ -58,6 +58,19 @@ a {
 
 /** Components */
 
+.navLinks {
+  color: #252525;
+  font-weight: bold;
+  letter-spacing: .09rem;
+  font-size: 0.89rem;
+}
+
+.navToolBar {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
 .questionsContainer {
   display: flex;
   flex-direction: row;

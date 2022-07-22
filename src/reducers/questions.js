@@ -1,5 +1,5 @@
 
-import { RECEIVE_QUESTIONS, ANSWER_QUESTION, SAVE_QUESTION_CHOICE } from "../actions/questions";
+import { RECEIVE_QUESTIONS, ANSWER_QUESTION, SAVE_QUESTION_CHOICE, ADD_QUESTION } from "../actions/questions";
 import authedUser from "./authedUser";
 
 export default function questions(state = {}, action) {
@@ -9,6 +9,11 @@ export default function questions(state = {}, action) {
 				...state,
 				...action.questions,
 			};
+		case ADD_QUESTION:
+			return {
+				...state,
+				[action.question.id]: action.question
+			}
 		case SAVE_QUESTION_CHOICE:
 			console.log("STATE **** ", state)
 			return {

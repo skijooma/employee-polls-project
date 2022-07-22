@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router";
-import "../App.css";
 import { handleInitialData } from "../actions/shared";
+import "../App.css";
 import Dashboard from "../pages/Dashboard";
 import Leaderboard from "../pages/Leaderboard";
 import NewQuestion from "../pages/NewQuestion";

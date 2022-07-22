@@ -1,5 +1,5 @@
 
-import { _getQuestions, _getUsers, _saveQuestionAnswer } from "./_DATA";
+import { _getQuestions, _getUsers, _saveQuestion, _saveQuestionAnswer } from "./_DATA";
 
 
 export function getInitialData () {
@@ -16,6 +16,6 @@ export function saveQuestionAnswer (info) {
 	return _saveQuestionAnswer(info)
 }
 
-// export function saveTweet (info) {
-// 	return _saveTweet(info)
-// }
+export function saveQuestion (info) {
+	return _saveQuestion(info)
+}

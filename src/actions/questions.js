@@ -1,7 +1,9 @@
-import { saveQuestionAnswer } from "../utils/api";
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { saveQuestion, saveQuestionAnswer } from "../utils/api";
 
 
 export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
+export const ADD_QUESTION = "ADD_QUESTION";
 export const ANSWER_QUESTION = "ANSWER_QUESTION";
 export const SAVE_QUESTION_CHOICE = "SAVE_QUESTION_CHOICE";
 
@@ -11,6 +13,30 @@ export default function receiveQuestions (questions) {
 		type: RECEIVE_QUESTIONS,
 		questions,
 	}
+}
+
+function addQuestion(question) {
+	return {
+		type: ADD_QUESTION,
+		question,
+	};
+}
+
+export function handleAddQuestion(optionOneText, optionTwoText, author) {
+
+	return (dispatch) => {
+
+		dispatch(showLoading());
+
+		return saveQuestion({
+			optionOneText,
+			optionTwoText,
+			author,
+		})
+			.then((question) => {
+				dispatch(addQuestion(question))})
+			.then(() => dispatch(hideLoading()));
+	};
 }
 
 export function saveQuestionChoice ({ authedUser, qid, answer }) {

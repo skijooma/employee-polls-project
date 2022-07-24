@@ -4,17 +4,12 @@ import QuestionSummaryCard from "./QuestionSummaryCard";
 
 const QuestionsList = (props) => {
 
-	console.log("Questions in QList => ", props.questions);
+	const { questions } = props;
 
 	return (
 		<div className="questionsContainer">
-			{/*{ questions.map((question) => {*/}
-			{/*	return (<QuestionSummaryCard key={question.id} question = {question} />)*/}
-			{/*})}*/}
-			{/*Questions List*/}
-
-			{ Object.keys(props.questions).map((id) => (
-				<QuestionSummaryCard key={id} question = {props.questions[id]} />
+			{ Object.keys(questions).map((id) => (
+				<QuestionSummaryCard key={id} question = {questions[id]} />
 			))}
 		</div>
 	)

@@ -1,7 +1,8 @@
 import "../App.css";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import QuestionDetailsCard from "../components/QuestionDetailsCard";
-import {useParams} from "react-router";
+import { Navigate, useParams } from "react-router";
 
 
 const QuestionDetails = () => {
@@ -11,18 +12,35 @@ const QuestionDetails = () => {
 	const question = questions[id];
 	const user = users['tylermcginnis'];
 
+	/* Local state variables */
+	const [authenticated, setAuthenticated] = useState(null);
+
 	console.log("Ques id in QDetails => ", id)
 	console.log("Question in QDetails => ", question)
 	// console.log("Question QDetails => ", question.author)
 	// console.log("Author in QDetails => ", Object.getOwnPropertyNames(question))
 	console.log("User QDetails => ", user)
 
+	useEffect(() => {
+		if (authedUser) {
+			setAuthenticated(authedUser);
+			console.log("AUTHENTICATION STATE IN Q-DETAILS => ", authenticated, " ", authedUser)
+		}
+	}, [authedUser]);
 
-	return (
-		<div>
-			<QuestionDetailsCard question = {question} user={user}/>
-		</ div>
-	);
+	if (authenticated) {
+
+		return (
+			<div>
+				<QuestionDetailsCard question = {question} user = {user}/>
+			</ div>
+		);
+	}
+	// else {
+	// 	return (
+	// 		<Navigate to = '/login' />
+	// 	)
+	// }
 };
 
 export default QuestionDetails;

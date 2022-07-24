@@ -7,22 +7,24 @@ import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 
 const AUTHED_ID = "tylermcginnis";
+const password = "abc321";
 const SELECTED_TAB_VALUE = 0;
 
 export function handleInitialData() {
 	return (dispatch) => {
 		dispatch(showLoading());
-		return getInitialData().then(({ users, questions }) => {
-			dispatch(receiveUsers(users));
-			dispatch(receiveQuestions(questions));
-			dispatch(setAuthedUser(AUTHED_ID));
-			dispatch(setSelectedTab(SELECTED_TAB_VALUE))
-			dispatch(hideLoading());
-		});
+		return getInitialData()
+			.then(({ users, questions }) => {
+				dispatch(receiveUsers(users));
+				dispatch(receiveQuestions(questions));
+				dispatch(setAuthedUser(AUTHED_ID));
+				dispatch(setSelectedTab(SELECTED_TAB_VALUE));
+				dispatch(hideLoading());
+			});
 	};
 }
 
-export function handleAnswerQuestion (info) {
+export function handleAnswerQuestion(info) {
 
 	return (dispatch) => {
 		dispatch(handleQuestionChoice(info));

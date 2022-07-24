@@ -21,10 +21,10 @@ const QuestionTabs = (props) => {
 
 	return (
 		<Box sx={{ width: '100%', bgcolor: 'background.paper' }}>
-			<Tabs value={value} onChange={handleTabChange} centered >
-				<Tab label="All" />
+			<Tabs value={value} onChange={handleTabChange} centered indicatorColor="secondary">
+				<Tab label="Unanswered" className="tabs" />
 				<Tab label="Answered" />
-				<Tab label="Unanswered" />
+				<Tab label="All" />
 			</Tabs>
 		</Box>
 	);

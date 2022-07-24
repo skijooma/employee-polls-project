@@ -1,8 +1,9 @@
 import { TextField } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router";
 import { handleAddQuestion } from "../actions/questions";
-import { handleUserQuestion } from "../actions/users";
+
 
 const NewQuestion = () => {
 
@@ -10,6 +11,16 @@ const NewQuestion = () => {
 	const dispatch = useDispatch();
 	const [optionOneText, setOptionOneText] = useState("");
 	const [optionTwoText, setOptionTwoText] = useState("");
+
+	/* Local state variables */
+	const [authenticated, setAuthenticated] = useState(false);
+
+	useEffect(() => {
+		if (authedUser) {
+			setAuthenticated(true);
+			console.log("AUTHENTICATION STATE IN ADD => ", authenticated, " ", authedUser)
+		}
+	}, [authedUser]);
 
 	const handleOptionOneChange = (e) => {
 		const value = e.target.value;
@@ -43,26 +54,33 @@ const NewQuestion = () => {
 	const optionOneCharactersLeft = 100 - optionOneText.length;
 	const optionTwoCharactersLeft = 100 - optionTwoText.length;
 
-	return (
-		<div>
-			<h3 className="center">Pose a question</h3>
-			<form className="new-question" onSubmit={handleSubmit}>
-				{/* TODO: Redirect to / if submitted */}
-				<div>
-					<TextField id="option-one" label="Option one" variant="outlined" value={optionOneText} maxLength={100} onChange={handleOptionOneChange}/>
-					{optionOneCharactersLeft <= 50 && <div className="option-text-length">{optionOneCharactersLeft}</div>}
-				</div>
+	if (authenticated) {
 
-				<div>
-					<TextField id="option-one" label="Option two" variant="outlined" value={optionTwoText} maxLength={100} onChange={handleOptionTwoChange}/>
-					{optionTwoCharactersLeft <= 50 && <div className="option-text-length">{optionTwoCharactersLeft}</div>}
-				</div>
-				<button className="btn" type="submit" disabled={optionOneText === "" || optionTwoText === ""}>
-					Submit
-				</button>
-			</form>
-		</div>
-	);
+		return (
+			<div>
+				<h3 className="center">Pose a question</h3>
+				<form className="new-question" onSubmit={handleSubmit}>
+					{/* TODO: Redirect to / if submitted */}
+					<div>
+						<TextField id="option-one" label="Option one" variant="outlined" value={optionOneText} maxLength={100} onChange={handleOptionOneChange}/>
+						{optionOneCharactersLeft <= 50 && <div className="option-text-length">{optionOneCharactersLeft}</div>}
+					</div>
+
+					<div>
+						<TextField id="option-one" label="Option two" variant="outlined" value={optionTwoText} maxLength={100} onChange={handleOptionTwoChange}/>
+						{optionTwoCharactersLeft <= 50 && <div className="option-text-length">{optionTwoCharactersLeft}</div>}
+					</div>
+					<button className="btn" type="submit" disabled={optionOneText === "" || optionTwoText === ""}>
+						Submit
+					</button>
+				</form>
+			</div>
+		);
+	}
+
+	return (
+		<Navigate to = '/login' />
+	)
 };
 
 export default NewQuestion;

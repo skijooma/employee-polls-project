@@ -1,6 +1,7 @@
 import "../App.css";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Navigate } from "react-router";
 import QuestionsList from "../components/QuestionsList";
 import QuestionTabs from "../components/QuestionTabs";
 import { LoadingBar } from "react-redux-loading-bar";
@@ -10,6 +11,7 @@ const Dashboard = () => {
 
 	const { questions, users, loading, authedUser, selectedTab } = useSelector(state => state);
 	const [questionsOnDisplay, setQuestionsOnDisplay] = useState(questions);
+	const [authenticated, setAuthenticated] = useState(authedUser);
 	const wholeState = useSelector(state => state)
 	// const [selectedTab, setSelectedTab] = useState(2);
 
@@ -21,6 +23,10 @@ const Dashboard = () => {
 	console.log("Logging the whole state => ", wholeState)
 
 	useEffect(() => {
+		setAuthenticated(authedUser);
+	}, [authedUser]);
+
+	useEffect(() => {
 		console.log("Selected tab in Dashboard => ", selectedTab);
 		setQuestionsOnDisplay(filterQuestions(selectedTab));
 		// setQuestionsOnDisplay(questions);
@@ -30,7 +36,7 @@ const Dashboard = () => {
 	const filterQuestions = (selectedTab) => {
 		let filteredQuestions = Object.values(questions);
 		console.log("Before filtering questions array => ", filteredQuestions);
-		filteredQuestions = filteredQuestions.filter(q => selectedTab === 0 ?
+		filteredQuestions = filteredQuestions.filter(q => selectedTab === 2 ?
 			questions :
 			selectedTab === 1 ?
 			(q.optionOne.votes && q.optionOne.votes.includes(authedUser)) || (q.optionTwo.votes && q.optionTwo.votes.includes(authedUser)) :
@@ -40,13 +46,19 @@ const Dashboard = () => {
 		return filteredQuestions;
 	}
 
+	if (authenticated) {
+		return (
+			<div>
+				<QuestionTabs/>
+				<LoadingBar/>
+				{loading === true ? null : <QuestionsList questions = {questionsOnDisplay}/>}
+			</div>
+		);
+	}
+
 	return (
-		<div>
-			<QuestionTabs/>
-			<LoadingBar/>
-			{loading === true ? null : <QuestionsList questions = {questionsOnDisplay}/>}
-		</div>
-	);
+		<Navigate to = '/login' />
+	)
 };
 
 export default Dashboard;

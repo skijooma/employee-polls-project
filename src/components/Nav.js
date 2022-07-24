@@ -12,8 +12,9 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { useEffect, useState } from "react";
 import * as React from 'react';
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import setAuthedUser, { handleLogin } from "../actions/authedUser";
 
 
 const pages = ['home', 'leaderboard', 'add'];
@@ -23,13 +24,14 @@ const Nav = () => {
 
 	const { authedUser, users } = useSelector(state => state);
 	const [user, setUser] = useState(users[authedUser]);
-	const [logInState, setLogInState] = useState(authedUser);
+	// const [logInState, setLogInState] = useState(authedUser);
 	const [logInStateText, setLogInStateText] = useState("");
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		setUser(users[authedUser]);
-		setLogInState(authedUser);
-		logInState ? setLogInStateText("Logout") : setLogInStateText("Login");
+		// setLogInState(authedUser);
+		users[authedUser] ? setLogInStateText("Logout") : setLogInStateText("Login");
 		console.log("USER ======== ", users[authedUser]);
 	}, [authedUser, users]);
 
@@ -49,8 +51,15 @@ const Nav = () => {
 	};
 
 	const handleCloseUserMenu = () => {
+		logUserOut();
 		setAnchorElUser(null);
 	};
+
+	const logUserOut = () => {
+		if (authedUser && (logInStateText === "Logout")) {
+			dispatch(setAuthedUser(null));
+		}
+	}
 
 	/*
 	 * Avatar resources:
@@ -121,7 +130,7 @@ const Nav = () => {
 							open = {Boolean(anchorElUser)}
 							onClose = {handleCloseUserMenu}
 						>
-							<MenuItem key = {logInStateText} onClick = {handleCloseUserMenu}>
+							<MenuItem onClick = {handleCloseUserMenu}>
 								<Typography textAlign = "center">{ logInStateText }</Typography>
 							</MenuItem>
 						</Menu>

@@ -1,10 +1,13 @@
-import { saveQuestionAnswer } from "../utils/api";
-import { SAVE_QUESTION_CHOICE, saveQuestionChoice } from "./questions";
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { saveQuestion, saveQuestionAnswer } from "../utils/api";
+import setAuthedUser from "./authedUser";
+import { ADD_QUESTION, SAVE_QUESTION_CHOICE, saveQuestionChoice } from "./questions";
 
 
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const SAVE_USER_ANSWER = "SAVE_USER_ANSWER";
 export const SAVE_USER_QUESTION = "SAVE_USER_QUESTION";
+export const SET_LOGGED_IN_USER = "SET_LOGGED_IN_USER";
 
 export default function receiveUsers (users) {
 

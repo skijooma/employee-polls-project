@@ -1,5 +1,8 @@
-import { ListItem, ListItemText } from "@mui/material";
+import { ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+import Avatar from "@mui/material/Avatar";
+import { red } from "@mui/material/colors";
 import Typography from "@mui/material/Typography";
+import * as React from "react";
 import { Fragment, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router";
@@ -22,16 +25,22 @@ const Leaderboard = () => {
 
 	if (authenticated) {
 		return (
-			<div>
+			<div className="leaderboard">
 				{Object.keys(users)
 					.sort((a, b) => (Object.keys(users[b].questions).length < Object.keys(users[a].questions).length ? -1 : Object.keys(users[b].questions).length === Object.keys(users[a].questions).length ? Object.keys(users[b].answers).length - Object.keys(users[a].answers).length : 1))
 					.map((id) => (
 						<div>
-							<ListItem alignItems = "flex-start">
+							<ListItem alignItems = "flex-start" className="leaderboardListItem">
+								<ListItemAvatar>
+									<Avatar alt = "{ users[id] && users[id].name }"
+											src = {(users[id] && users[id].avatarURL) ? users[id].avatarURL : ""}
+											sx={{ bgcolor: red[500] }} aria-label="recipe" />
+								</ListItemAvatar>
+
 								<ListItemText
 									primary = {users[id].name}
 									secondary = {
-										<div>
+										<div className="leaderboardListItemTypography">
 											<Fragment>
 												<Typography
 													sx = {{ display: 'inline' }}
@@ -39,9 +48,8 @@ const Leaderboard = () => {
 													variant = "body2"
 													color = "text.primary"
 												>
-													Created:
+													{`Created: ${Object.keys(users[id].questions).length}`}
 												</Typography>
-												{` ${Object.keys(users[id].questions).length}`}
 											</Fragment>
 
 											<Fragment>
@@ -51,9 +59,8 @@ const Leaderboard = () => {
 													variant = "body2"
 													color = "text.primary"
 												>
-													Answered:
+													{`Answered: ${Object.keys(users[id].answers).length}`}
 												</Typography>
-												{` ${Object.keys(users[id].answers).length}`}
 											</Fragment>
 										</div>
 									}
@@ -65,9 +72,9 @@ const Leaderboard = () => {
 		);
 	}
 
-	return (
-		<Navigate to = '/login' />
-	)
+	// return (
+	// 	<Navigate to = '/login' />
+	// )
 };
 
 export default Leaderboard;

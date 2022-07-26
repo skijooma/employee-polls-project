@@ -214,6 +214,27 @@ a {
   width: 90%;
 }
 
+.loginContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  margin: auto;
+  margin-top: 4rem;
+  width: 30%;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  margin: auto;
+  /*width: 60%;*/
+}
+
 /*.questionDetailsCard {*/
 /*  flex: 1 0 25%;*/
 /*  margin: 10px;*/

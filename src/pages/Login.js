@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { FormControl, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router";
@@ -53,19 +53,17 @@ const Login = () => {
 	}
 
 	return (
-		<div>
-			<h3 className="center">Login</h3>
-			<form className="new-question" onSubmit={handleSubmit}>
+		<div className="loginContainer">
+			<h3>Login</h3>
+			<form className="loginForm" onSubmit={handleSubmit}>
 				{/* TODO: Redirect to / if submitted */}
-				<div>
+				<FormControl fullWidth sx={{ m: 1 }} variant="standard">
 					<TextField id="username" label="Username" variant="outlined" value={username} onChange={handleUsernameChange}/>
-					{/*{optionOneCharactersLeft <= 50 && <div className="option-text-length">{optionOneCharactersLeft}</div>}*/}
-				</div>
+				</FormControl>
 
-				<div>
+				<FormControl fullWidth sx={{ m: 1 }} variant="standard">
 					<TextField id="password" label="Password" variant="outlined" value={password} onChange={handlePasswordChange}/>
-					{/*{optionTwoCharactersLeft <= 50 && <div className="option-text-length">{optionTwoCharactersLeft}</div>}*/}
-				</div>
+				</FormControl>
 				<button className="btn" type="submit" disabled={username === "" || password === ""}>
 					Submit
 				</button>

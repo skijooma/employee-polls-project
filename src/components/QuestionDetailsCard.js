@@ -11,25 +11,31 @@ import { red } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import formatTime from "../utils/TimeFormatter";
 import BallotBox from "./BallotBox";
 
 
 export default function QuestionDetailsCard(props) {
 
+	const { question, user } = props;
+
 	return (
-		<div className="questionDetailsCard">
-			<Card sx={{ minWidth: 345 }}>
+		<div>
+			<Card sx={{ minWidth: 345 }} className="questionDetailsCard">
 				<CardHeader
 					avatar={
-						<Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-							R
-						</Avatar>
+						<Avatar alt = "{ user && user.name }"
+								src = {(user && user.avatarURL) ? user.avatarURL : ""}
+								sx={{ bgcolor: red[500] }} aria-label="recipe" />
 					}
-					title= {props.user.name}
-					subheader="September 14, 2016"
+					title= {user.name}
+					subheader= {formatTime(question.timestamp)}
 				/>
-				<CardContent>
-					<BallotBox question = {props.question}/>
+				<CardContent className="questionDetailsCardContent">
+					<Typography variant = "h5" component = "div" align="center">
+						{`Would you rather`}
+					</Typography>
+					<BallotBox question = {question} />
 				</CardContent>
 			</Card>
 		</div>

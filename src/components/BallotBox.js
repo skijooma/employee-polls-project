@@ -25,7 +25,7 @@ const BallotBox = (props) => {
 
 	useEffect(() => {
 		setPollMetrics(getVoteMetrics(pollQuestion));
-	}, [pollMetrics])
+	}, [pollMetrics]);
 
 	const handleVoteClick = (e) => {
 
@@ -39,40 +39,47 @@ const BallotBox = (props) => {
 
 	return (
 		<div className = "ballotBox">
-			<div className = "ballot">
+			<div className = {((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionOne.votes.includes(authedUser))) ? "ballotVoted" : "ballot"}>
 				<div className = "ballotText">
 					<div className = "voteQuestionText">
 						<Typography variant = "body2" color = "text.secondary">
-							{props.question.optionOne.text}
+							{pollQuestion.optionOne.text}
 						</Typography>
 					</div>
-					{((props.question.optionOne.votes.includes(authedUser)) || (props.question.optionOne.votes.includes(authedUser))) &&
+
+					{((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionOne.votes.includes(authedUser))) &&
 						(<div className = "voteShareMetrics">
 							<Typography variant = "body2" color = "text.secondary">
-								{`${pollMetrics.optionOnePercentage}% (${pollMetrics.optionOneVoteCount})`}
+								{` ${pollMetrics.optionOnePercentage}% (${pollMetrics.optionOneVoteCount})`}
 							</Typography>
 						</div>)}
 				</div>
-				<Button size = "small" onClick = {handleVoteClick} id = "optionOne" value = "optionOne">
-					Vote
+				<Button size = "medium" color = "secondary" onClick = {handleVoteClick} id = "optionOne" value = "optionOne">
+					{((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionOne.votes.includes(authedUser)))?
+						"Voted":
+						"Vote"}
 				</Button>
 			</div>
 
-			<div className = "ballot">
+			<div className = {((pollQuestion.optionTwo.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser))) ? "ballotVoted" : "ballot"}>
 				<div className = "ballotText">
 					<div className = "voteQuestionText">
 						<Typography variant = "body2" color = "text.secondary">
 							{props.question.optionTwo.text}
 						</Typography>
 					</div>
-					<div className = "voteShareMetrics">
-						<Typography variant = "body2" color = "text.secondary">
-							81% (4)
-						</Typography>
-					</div>
+
+					{((pollQuestion.optionTwo.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser))) &&
+						(<div className = "voteShareMetrics">
+							<Typography variant = "body2" color = "text.secondary">
+								{` ${pollMetrics.optionTwoPercentage}% (${pollMetrics.optionTwoVoteCount})`}
+							</Typography>
+						</div>)}
 				</div>
-				<Button size = "small">
-					Vote
+				<Button size = "small" onClick = {handleVoteClick} id = "optionTwo" value = "optionTwo">
+					{((pollQuestion.optionTwo.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser)))?
+						"Voted":
+						"Vote"}
 				</Button>
 			</div>
 		</div>

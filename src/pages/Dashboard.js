@@ -35,13 +35,19 @@ const Dashboard = () => {
 
 	const filterQuestions = (selectedTab) => {
 		let filteredQuestions = Object.values(questions);
+		let sortedFilteredQuestions;
+
 		console.log("Before filtering questions array => ", filteredQuestions);
 		filteredQuestions = filteredQuestions.filter(q => selectedTab === 2 ?
 			questions :
 			selectedTab === 1 ?
 			(q.optionOne.votes && q.optionOne.votes.includes(authedUser)) || (q.optionTwo.votes && q.optionTwo.votes.includes(authedUser)) :
 				(q.optionOne.votes && !q.optionOne.votes.includes(authedUser)) && (q.optionTwo.votes && !q.optionTwo.votes.includes(authedUser)));
+
 		console.log("After filtering questions array => ", filteredQuestions);
+		sortedFilteredQuestions = Object.keys(filterQuestions)
+			.sort((a, b) => Object.keys(filterQuestions[b].timestamp) - Object.keys(filterQuestions[a].timestamp))
+		console.log("sortedFilteredQuestions => ", sortedFilteredQuestions);
 
 		return filteredQuestions;
 	}

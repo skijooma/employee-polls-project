@@ -108,12 +108,20 @@ const Nav = () => {
 					</Box>
 
 					<Box sx = {{ flexGrow: 0 }}>
-						<Tooltip title = "Open settings">
-							<IconButton onClick = {handleOpenUserMenu} sx = {{ p: 0 }}>
-								<Avatar alt = "{ user && user.name }"
-										src = {(user && user.avatarURL) ? user.avatarURL : ""}/>
-							</IconButton>
-						</Tooltip>
+						<div className="userInfoBox">
+							<Tooltip title = "Open settings">
+								<IconButton onClick = {handleOpenUserMenu} sx = {{ p: 0 }}>
+									<Avatar alt = "{ user && user.name }"
+											src = {(user && user.avatarURL) ? user.avatarURL : ""}/>
+								</IconButton>
+							</Tooltip>
+
+							{ user && (
+								<Typography variant = "body2" color = "white" fontWeight="bold" letterSpacing={0.3} margin={2}>
+									{user.name}
+								</Typography>
+							)}
+						</div>
 						<Menu
 							sx = {{ mt: '45px' }}
 							id = "menu-appbar"

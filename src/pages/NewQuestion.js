@@ -1,4 +1,4 @@
-import { TextField } from "@mui/material";
+import { FormControl, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router";
@@ -57,20 +57,22 @@ const NewQuestion = () => {
 	if (authenticated) {
 
 		return (
-			<div>
+			<div className="newQuestionContainer">
 				<h3 className="center">Pose a question</h3>
-				<form className="new-question" onSubmit={handleSubmit}>
+				<form className="newQuestionForm" onSubmit={handleSubmit}>
 					{/* TODO: Redirect to / if submitted */}
-					<div>
+
+					<FormControl fullWidth sx={{ m: 1 }} variant="standard">
 						<TextField id="option-one" label="Option one" variant="outlined" value={optionOneText} maxLength={100} onChange={handleOptionOneChange}/>
 						{optionOneCharactersLeft <= 50 && <div className="option-text-length">{optionOneCharactersLeft}</div>}
-					</div>
+					</FormControl>
 
-					<div>
+					<FormControl fullWidth sx={{ m: 1 }} variant="standard">
 						<TextField id="option-one" label="Option two" variant="outlined" value={optionTwoText} maxLength={100} onChange={handleOptionTwoChange}/>
 						{optionTwoCharactersLeft <= 50 && <div className="option-text-length">{optionTwoCharactersLeft}</div>}
-					</div>
-					<button className="btn" type="submit" disabled={optionOneText === "" || optionTwoText === ""}>
+					</FormControl>
+
+					<button className="btn " type="submit" disabled={optionOneText === "" || optionTwoText === ""} size = "medium" color = "secondary">
 						Submit
 					</button>
 				</form>
@@ -78,9 +80,9 @@ const NewQuestion = () => {
 		);
 	}
 
-	return (
-		<Navigate to = '/login' />
-	)
+	// return (
+	// 	<Navigate to = '/login' />
+	// )
 };
 
 export default NewQuestion;

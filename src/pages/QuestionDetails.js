@@ -1,8 +1,8 @@
-import "../App.css";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router";
+import "../App.css";
 import QuestionDetailsCard from "../components/QuestionDetailsCard";
-import { Navigate, useParams } from "react-router";
 
 
 const QuestionDetails = () => {
@@ -17,8 +17,6 @@ const QuestionDetails = () => {
 
 	console.log("Ques id in QDetails => ", id)
 	console.log("Question in QDetails => ", question)
-	// console.log("Question QDetails => ", question.author)
-	// console.log("Author in QDetails => ", Object.getOwnPropertyNames(question))
 	console.log("User QDetails => ", user)
 
 	useEffect(() => {
@@ -28,19 +26,12 @@ const QuestionDetails = () => {
 		}
 	}, [authedUser, authenticated]);
 
-	if (authenticated) {
 
-		return (
-			<div className="questionDetailsCardContainer">
-				<QuestionDetailsCard question = {question} user = {user}/>
-			</ div>
-		);
-	}
-	// else {
-	// 	return (
-	// 		<Navigate to = '/login' />
-	// 	)
-	// }
+	return (
+		<div className="questionDetailsCardContainer">
+			<QuestionDetailsCard question = {question} user = {user}/>
+		</ div>
+	);
 };
 
 export default QuestionDetails;

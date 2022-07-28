@@ -11,6 +11,7 @@ import NewQuestion from "../pages/NewQuestion";
 import QuestionDetails from "../pages/QuestionDetails";
 import authedUser from "../reducers/authedUser";
 import Nav from "./Nav";
+import ProtectedRoute from "./ProtectedRoute";
 
 
 const App = () => {
@@ -29,13 +30,41 @@ const App = () => {
 		<div className = "app">
 			<Nav />
 			<Routes>
-				<Route path="/" element={<Dashboard />} />
-				<Route path="/home" element={<Dashboard />} />
-				<Route path="/questions/:id" element={<QuestionDetails />} />
-				<Route path="leaderboard" element={<Leaderboard />} />
-				<Route path="/add" element={<NewQuestion />} />
+				<Route path="/" element={
+					<ProtectedRoute user = { authedUser }>
+						<Dashboard />
+					</ProtectedRoute>
+				} />
+
+				<Route path="/home" element={
+					<ProtectedRoute user = { authedUser }>
+						<Dashboard />
+					</ProtectedRoute>
+				} />
+
+				<Route path="/questions/:id" element={
+					<ProtectedRoute user = { authedUser }>
+						<QuestionDetails />
+					</ProtectedRoute>
+				} />
+
+				<Route path="/leaderboard" element={
+					<ProtectedRoute user = { authedUser }>
+						<Leaderboard />
+					</ProtectedRoute>
+				} />
+
+				<Route path="/add" element={
+					<ProtectedRoute user = { authedUser }>
+						<NewQuestion />
+					</ProtectedRoute>
+				} />
+
+				{/*<Route path="/home" element={<Dashboard />} />*/}
+				{/*<Route path="/questions/:id" element={<QuestionDetails />} />*/}
+				{/*<Route path="leaderboard" element={<Leaderboard />} />*/}
+				{/*<Route path="/add" element={<NewQuestion />} />*/}
 				<Route path="/login" element={<Login />} />
-				{/*<Route path="/" element={ authedUser ? <Navigate to="/" /> : <Login />} />*/}
 			</Routes>
 		</div>
 	);

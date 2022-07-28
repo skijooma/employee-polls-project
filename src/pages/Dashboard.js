@@ -1,10 +1,9 @@
-import "../App.css";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from "react-router";
+import { LoadingBar } from "react-redux-loading-bar";
+import "../App.css";
 import QuestionsList from "../components/QuestionsList";
 import QuestionTabs from "../components/QuestionTabs";
-import { LoadingBar } from "react-redux-loading-bar";
 
 
 const Dashboard = () => {
@@ -41,7 +40,7 @@ const Dashboard = () => {
 		filteredQuestions = filteredQuestions.filter(q => selectedTab === 2 ?
 			questions :
 			selectedTab === 1 ?
-			(q.optionOne.votes && q.optionOne.votes.includes(authedUser)) || (q.optionTwo.votes && q.optionTwo.votes.includes(authedUser)) :
+				(q.optionOne.votes && q.optionOne.votes.includes(authedUser)) || (q.optionTwo.votes && q.optionTwo.votes.includes(authedUser)) :
 				(q.optionOne.votes && !q.optionOne.votes.includes(authedUser)) && (q.optionTwo.votes && !q.optionTwo.votes.includes(authedUser)));
 
 		console.log("After filtering questions array => ", filteredQuestions);
@@ -52,19 +51,14 @@ const Dashboard = () => {
 		return filteredQuestions;
 	}
 
-	if (authenticated) {
-		return (
-			<div>
-				<QuestionTabs/>
-				<LoadingBar/>
-				{loading === true ? null : <QuestionsList questions = {questionsOnDisplay}/>}
-			</div>
-		);
-	}
 
 	return (
-		<Navigate to = '/login' />
-	)
+		<div>
+			<QuestionTabs/>
+			<LoadingBar/>
+			{loading === true ? null : <QuestionsList questions = {questionsOnDisplay}/>}
+		</div>
+	);
 };
 
 export default Dashboard;

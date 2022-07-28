@@ -7,7 +7,7 @@ import { handleLogin } from "../actions/authedUser";
 
 const Login = () => {
 
-	const { authedUser, users } = useSelector( state => state);
+	const { authedUser, users } = useSelector(state => state);
 	const dispatch = useDispatch();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
@@ -48,23 +48,25 @@ const Login = () => {
 
 	if (authenticated) {
 		return (
-			<Navigate to = '/' />
+			<Navigate to = '/'/>
 		)
 	}
 
 	return (
-		<div className="loginContainer">
+		<div className = "loginContainer">
 			<h3>Login</h3>
-			<form className="loginForm" onSubmit={handleSubmit}>
+			<form className = "loginForm" onSubmit = {handleSubmit}>
 				{/* TODO: Redirect to / if submitted */}
-				<FormControl fullWidth sx={{ m: 1 }} variant="standard">
-					<TextField id="username" label="Username" variant="outlined" value={username} onChange={handleUsernameChange}/>
+				<FormControl fullWidth sx = {{ m: 1 }} variant = "standard">
+					<TextField id = "username" label = "Username" variant = "outlined" value = {username}
+							   onChange = {handleUsernameChange}/>
 				</FormControl>
 
-				<FormControl fullWidth sx={{ m: 1 }} variant="standard">
-					<TextField id="password" label="Password" variant="outlined" value={password} onChange={handlePasswordChange}/>
+				<FormControl fullWidth sx = {{ m: 1 }} variant = "standard">
+					<TextField id = "password" label = "Password" variant = "outlined" value = {password}
+							   onChange = {handlePasswordChange}/>
 				</FormControl>
-				<button className="btn" type="submit" disabled={username === "" || password === ""}>
+				<button className = "btn" type = "submit" disabled = {username === "" || password === ""}>
 					Submit
 				</button>
 			</form>

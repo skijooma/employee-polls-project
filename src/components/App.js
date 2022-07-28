@@ -8,6 +8,7 @@ import Dashboard from "../pages/Dashboard";
 import Leaderboard from "../pages/Leaderboard";
 import Login from "../pages/Login";
 import NewQuestion from "../pages/NewQuestion";
+import NotFoundPage from "../pages/NotFoundPage";
 import QuestionDetails from "../pages/QuestionDetails";
 import authedUser from "../reducers/authedUser";
 import Nav from "./Nav";
@@ -59,6 +60,10 @@ const App = () => {
 						<NewQuestion />
 					</ProtectedRoute>
 				} />
+
+				<Route path="*" element={
+					<NotFoundPage />
+				}/>
 
 				{/*<Route path="/home" element={<Dashboard />} />*/}
 				{/*<Route path="/questions/:id" element={<QuestionDetails />} />*/}

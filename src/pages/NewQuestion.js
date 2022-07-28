@@ -1,16 +1,18 @@
 import { FormControl, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router";
+import { useNavigate } from "react-router";
 import { handleAddQuestion } from "../actions/questions";
 
 
 const NewQuestion = () => {
 
+	const navigate = useNavigate();
 	const { authedUser } = useSelector( state => state)
 	const dispatch = useDispatch();
 	const [optionOneText, setOptionOneText] = useState("");
 	const [optionTwoText, setOptionTwoText] = useState("");
+	const [newPoll, setNewPoll] = useState(false);
 
 	/* Local state variables */
 	const [authenticated, setAuthenticated] = useState(false);
@@ -20,7 +22,7 @@ const NewQuestion = () => {
 			setAuthenticated(true);
 			console.log("AUTHENTICATION STATE IN ADD => ", authenticated, " ", authedUser)
 		}
-	}, [authedUser]);
+	}, [authedUser, authenticated]);
 
 	const handleOptionOneChange = (e) => {
 		const value = e.target.value;
@@ -45,10 +47,11 @@ const NewQuestion = () => {
 		console.log("optionTwoText: ", optionTwoText);
 
 		dispatch(handleAddQuestion(optionOneText, optionTwoText, authedUser));
-		// dispatch(handleUserQuestion(authedUser));
 
+		/* Reset form values and redirect user to the questions page. */
 		setOptionOneText("");
 		setOptionTwoText("");
+		navigate('/home');
 	};
 
 	const optionOneCharactersLeft = 100 - optionOneText.length;

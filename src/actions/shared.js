@@ -6,8 +6,8 @@ import receiveUsers, { handleUserAnswer, saveUserAnswer } from "./users";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 
-const AUTHED_ID = "tylermcginnis";
-const password = "abc321";
+const AUTHED_ID = null // "tylermcginnis";
+const password = null // "abc321";
 const SELECTED_TAB_VALUE = 0;
 
 export function handleInitialData() {

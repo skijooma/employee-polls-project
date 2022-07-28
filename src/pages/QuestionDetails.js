@@ -10,7 +10,7 @@ const QuestionDetails = () => {
 	const {users, questions, authedUser, loading } = useSelector(state => state);
 	const { id } = useParams(); // QuestionId in route params.
 	const question = questions[id];
-	const user = users['tylermcginnis'];
+	const user = users[question.author];
 
 	/* Local state variables */
 	const [authenticated, setAuthenticated] = useState(null);
@@ -26,12 +26,12 @@ const QuestionDetails = () => {
 			setAuthenticated(authedUser);
 			console.log("AUTHENTICATION STATE IN Q-DETAILS => ", authenticated, " ", authedUser)
 		}
-	}, [authedUser]);
+	}, [authedUser, authenticated]);
 
 	if (authenticated) {
 
 		return (
-			<div>
+			<div className="questionDetailsCardContainer">
 				<QuestionDetailsCard question = {question} user = {user}/>
 			</ div>
 		);

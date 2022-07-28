@@ -53,9 +53,9 @@ export function saveUserAnswer ({ authedUser, qid, answer }) {
 export function handleUserAnswer (info) {
 
 	return (dispatch) => {
-		dispatch(saveQuestionAnswer(info));
+		dispatch(saveUserAnswer(info));
 
-		return saveUserAnswer(info)
+		return saveQuestionAnswer(info)
 			.catch((e) => {
 				console.warn("Error saving questionAnswer => ", e);
 

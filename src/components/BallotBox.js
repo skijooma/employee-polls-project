@@ -18,23 +18,29 @@ import getVoteMetrics from "../utils/PollMetrics";
 
 const BallotBox = (props) => {
 
-	const { authedUser, questions } = useSelector(state => state);
+	const { authedUser, questions, users } = useSelector(state => state);
 	const dispatch = useDispatch();
 	const pollQuestion = props.question;
 	const [pollMetrics, setPollMetrics] = useState(getVoteMetrics(pollQuestion));
 
 	useEffect(() => {
 		setPollMetrics(getVoteMetrics(pollQuestion));
-	}, [pollMetrics]);
+	}, [pollMetrics, pollQuestion]);
 
 	const handleVoteClick = (e) => {
 
 		console.log("Vote click => ", e.target.value);
-		dispatch(handleAnswerQuestion({
-			authedUser,
-			qid: props.question.id,
-			answer: e.target.value,
-		}));
+		console.log("Voted??", users[authedUser].answers.hasOwnProperty(pollQuestion.id), " - ", pollQuestion.id);
+
+		if (users[authedUser].answers.hasOwnProperty(pollQuestion.id)) {
+			console.log("You already voted on this question!", users[authedUser].answers.hasOwnProperty(e.target.value))
+		} else {
+			dispatch(handleAnswerQuestion({
+				authedUser,
+				qid: props.question.id,
+				answer: e.target.value,
+			}));
+		}
 	}
 
 	return (

@@ -1,7 +1,7 @@
 import { FormControl, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router";
+import { Navigate, useLocation, useNavigate } from "react-router";
 import { handleLogin } from "../actions/authedUser";
 
 
@@ -9,9 +9,12 @@ const Login = () => {
 
 	const { authedUser, users } = useSelector(state => state);
 	const dispatch = useDispatch();
+	const location = useLocation();
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [authenticated, setAuthenticated] = useState(false);
+	const navigate = useNavigate();
+	const redirectPath = location.state.path || "/login";
 
 	useEffect(() => {
 		if (authedUser) {
@@ -48,7 +51,7 @@ const Login = () => {
 
 	if (authenticated) {
 		return (
-			<Navigate to = '/'/>
+			<Navigate to = {redirectPath}  replace = {true}/>
 		)
 	}
 

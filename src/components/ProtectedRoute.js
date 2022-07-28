@@ -1,14 +1,15 @@
-import { Navigate } from "react-router";
+import { Navigate, useLocation } from "react-router";
 import "../App.css";
 
 
 const ProtectedRoute = ({ user, redirectTo = "/login", children }) => {
 
-	console.log("PROTECTED ROUTE (AUTHED USER) ==> ", user);
+	const location = useLocation();
+	console.log("PROTECTED ROUTE (AUTHED USER) ==> ", user, " LOC ", location);
 
 	if (!user) {
 
-		return <Navigate to = {redirectTo} replace/>;
+		return <Navigate to = {redirectTo} state = {{ path: location.pathname }} replace />;
 	}
 
 	return children;

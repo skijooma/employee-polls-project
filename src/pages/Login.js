@@ -14,7 +14,7 @@ const Login = () => {
 	const [password, setPassword] = useState("");
 	const [authenticated, setAuthenticated] = useState(false);
 	const navigate = useNavigate();
-	const redirectPath = location.state.path || "/login";
+	const redirectPath = (location && location.state) ? location.state.path: "/login";
 
 	useEffect(() => {
 		if (authedUser) {
@@ -51,7 +51,7 @@ const Login = () => {
 
 	if (authenticated) {
 		return (
-			<Navigate to = {redirectPath}  replace = {true}/>
+			<Navigate to = {redirectPath} replace = {true}/>
 		)
 	}
 
@@ -62,14 +62,13 @@ const Login = () => {
 				{/* TODO: Redirect to / if submitted */}
 				<FormControl fullWidth sx = {{ m: 1 }} variant = "standard">
 					<TextField id = "username" label = "Username" variant = "outlined" value = {username}
-							   onChange = {handleUsernameChange}/>
+							   onChange = {handleUsernameChange} data-testid="username"/>
 				</FormControl>
-
 				<FormControl fullWidth sx = {{ m: 1 }} variant = "standard">
 					<TextField id = "password" label = "Password" variant = "outlined" value = {password}
-							   onChange = {handlePasswordChange}/>
+							   onChange = {handlePasswordChange} data-testid="password"/>
 				</FormControl>
-				<button className = "btn" type = "submit" disabled = {username === "" || password === ""}>
+				<button className = "btn" type = "submit" disabled = {username === "" || password === ""} data-testid="login-button">
 					Submit
 				</button>
 			</form>

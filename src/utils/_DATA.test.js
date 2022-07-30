@@ -1,6 +1,8 @@
 import * as data from "./_DATA";
 
 
+jest.useRealTimers();
+
 describe('test saving a question', () => {
 	it('should verify that the saved question is returned with all expected fields populated', async () => {
 		let question = {
@@ -31,21 +33,23 @@ describe('test saving a question', () => {
 	});
 });
 
+describe('test saving a question-answer', () => {
+	it('should verify that the saved question-answer is returned with all expected fields populated', async () => {
+		let questionAnswer = {
+			authedUser: "mtsamis",
+			qid: "vthrdm985a262al8qx3do",
+			answer: "optionOne",
+		};
+		// jest.setTimeout(10 * 1000);
+		const result = await data._saveQuestionAnswer(questionAnswer);
+		expect(result).toEqual(true);
+	});
 
-
-// test('should contain important value in nested object', () => {
-// 	const nestedObject = {
-// 		ignore: 'ignore',
-// 		payload: {
-// 			important: 'important',           ignore: 'ignore',
-// 		},
-// 	};
-//
-// 	expect(nestedObject).toEqual(
-// 		expect.objectContaining({
-// 			payload: expect.objectContaining({
-// 				important: 'important',
-// 			}),
-// 		})
-// 	);
-// });
+	it("should verify that an error is returned if an invalid question-answer is provided", async() => {
+		let questionAnswer = {
+			authedUser: "mtsamis",
+			qid: "vthrdm985a262al8qx3do",
+		};
+		await expect(data._saveQuestionAnswer(questionAnswer)).rejects.toEqual("Please provide authedUser, qid, and answer");
+	});
+});

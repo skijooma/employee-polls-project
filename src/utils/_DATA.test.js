@@ -1,8 +1,6 @@
 import * as data from "./_DATA";
 
 
-jest.useRealTimers();
-
 describe('test saving a question', () => {
 	it('should verify that the saved question is returned with all expected fields populated', async () => {
 		let question = {
@@ -40,7 +38,6 @@ describe('test saving a question-answer', () => {
 			qid: "vthrdm985a262al8qx3do",
 			answer: "optionOne",
 		};
-		// jest.setTimeout(10 * 1000);
 		const result = await data._saveQuestionAnswer(questionAnswer);
 		expect(result).toEqual(true);
 	});

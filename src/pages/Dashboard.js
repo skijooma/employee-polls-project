@@ -12,13 +12,7 @@ const Dashboard = () => {
 	const [questionsOnDisplay, setQuestionsOnDisplay] = useState(questions);
 	const [authenticated, setAuthenticated] = useState(authedUser);
 	const wholeState = useSelector(state => state)
-	// const [selectedTab, setSelectedTab] = useState(2);
 
-	// console.log("Questions in Dashboard => ", questions);
-	// console.log("Users in Dashboard => ", users);
-	// console.log("Loading in Dashboard => ", loading);
-	// console.log("Authed user in Dashboard => ", authedUser);
-	// console.log("Selected tab in Dashboard => ", selectedTab);
 	console.log("Logging the whole state => ", wholeState)
 
 	useEffect(() => {
@@ -44,9 +38,14 @@ const Dashboard = () => {
 				(q.optionOne.votes && !q.optionOne.votes.includes(authedUser)) && (q.optionTwo.votes && !q.optionTwo.votes.includes(authedUser)));
 
 		console.log("After filtering questions array => ", filteredQuestions);
-		sortedFilteredQuestions = Object.keys(filterQuestions)
-			.sort((a, b) => Object.keys(filterQuestions[b].timestamp) - Object.keys(filterQuestions[a].timestamp))
+		sortedFilteredQuestions = Object.keys(filteredQuestions)
+			.sort((a, b) => {
+				return filteredQuestions[b].timestamp - filteredQuestions[a].timestamp
+			});
+		console.log("After filtering questions array => ", filteredQuestions);
 		console.log("sortedFilteredQuestions => ", sortedFilteredQuestions);
+
+		// Object.keys(tweets).sort((a, b) => tweets[b].timestamp - tweets[a].timestamp)
 
 		return filteredQuestions;
 	}

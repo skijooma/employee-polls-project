@@ -10,11 +10,11 @@ import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
+import * as React from "react";
 import { useEffect, useState } from "react";
-import * as React from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import setAuthedUser, { handleLogin } from "../actions/authedUser";
+import setAuthedUser from "../actions/authedUser";
 
 
 const pages = ['home', 'leaderboard', 'add'];
@@ -61,17 +61,6 @@ const Nav = () => {
 		}
 	}
 
-	/*
-	 * Avatar resources:
-	 * 1. https://imgur.com/a/BRuclAD - Tyler
-	 * 2. https://imgur.com/yjMx6bl - Sarah
-	 * 3. https://imgur.com/ohSaRdd - Samis
-	 * 4. https://imgur.com/nyRPR69 - Blackman
-	 * 5. https://imgur.com/NdJWksY - Blackman-1
-	 *
-	 *
-	 * */
-
 	return (
 		<AppBar position = "static">
 			<Container maxWidth = "xl">
@@ -108,7 +97,7 @@ const Nav = () => {
 					</Box>
 
 					<Box sx = {{ flexGrow: 0 }}>
-						<div className="userInfoBox">
+						<div className = "userInfoBox">
 							<Tooltip title = "Open settings">
 								<IconButton onClick = {handleOpenUserMenu} sx = {{ p: 0 }}>
 									<Avatar alt = "{ user && user.name }"
@@ -116,8 +105,9 @@ const Nav = () => {
 								</IconButton>
 							</Tooltip>
 
-							{ user && (
-								<Typography variant = "body2" color = "white" fontWeight="bold" letterSpacing={0.3} margin={2}>
+							{user && (
+								<Typography variant = "body2" color = "white" fontWeight = "bold" letterSpacing = {0.3}
+											margin = {2} data-testid="name">
 									{user.name}
 								</Typography>
 							)}
@@ -139,7 +129,7 @@ const Nav = () => {
 							onClose = {handleCloseUserMenu}
 						>
 							<MenuItem onClick = {handleCloseUserMenu}>
-								<Typography textAlign = "center">{ logInStateText }</Typography>
+								<Typography textAlign = "center">{logInStateText}</Typography>
 							</MenuItem>
 						</Menu>
 					</Box>

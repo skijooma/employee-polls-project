@@ -18,7 +18,7 @@ const Dashboard = () => {
 
 	useEffect(() => {
 		setQuestionsOnDisplay(filterQuestions(selectedTab));
-	}, [selectedTab]);
+	}, [selectedTab, questions]);
 
 	const filterQuestions = (selectedTab) => {
 		let filteredQuestions = Object.values(questions);

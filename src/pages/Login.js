@@ -10,8 +10,8 @@ const Login = () => {
 	const { authedUser, users } = useSelector(state => state);
 	const dispatch = useDispatch();
 	const location = useLocation();
-	const [username, setUsername] = useState("");
-	const [password, setPassword] = useState("");
+	const [username, setUsername] = useState("tylermcginnis");
+	const [password, setPassword] = useState("abc321");
 	const [authenticated, setAuthenticated] = useState(false);
 	const navigate = useNavigate();
 	const redirectPath = (location && location.state) ? location.state.path : "/login";

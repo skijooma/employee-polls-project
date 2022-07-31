@@ -53,11 +53,11 @@ const Login = () => {
 			<form className = "loginForm" onSubmit = {handleSubmit}>
 				<FormControl fullWidth sx = {{ m: 1 }} variant = "standard">
 					<TextField id = "username" label = "Username" variant = "outlined" value = {username}
-							   onChange = {handleUsernameChange} data-testid = "username"/>
+							   onChange = {handleUsernameChange} data-testid = "username" name="username"/>
 				</FormControl>
 				<FormControl fullWidth sx = {{ m: 1 }} variant = "standard">
 					<TextField id = "password" label = "Password" variant = "outlined" value = {password}
-							   onChange = {handlePasswordChange} data-testid = "password"/>
+							   onChange = {handlePasswordChange} data-testid = "password" name="password"/>
 				</FormControl>
 				<button className = "btn" type = "submit" disabled = {username === "" || password === ""}
 						data-testid = "login-button">

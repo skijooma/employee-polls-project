@@ -13,7 +13,7 @@ const QuestionDetails = () => {
 	const user = users[question.author];
 
 	/* Local state variables */
-	const [authenticated, setAuthenticated] = useState(null);
+	const [authenticated, setAuthenticated] = useState();
 
 	useEffect(() => {
 		if (authedUser) {

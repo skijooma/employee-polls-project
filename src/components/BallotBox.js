@@ -15,7 +15,7 @@ const BallotBox = (props) => {
 
 	useEffect(() => {
 		setPollMetrics(getVoteMetrics(pollQuestion));
-	}, [pollMetrics, pollQuestion]);
+	}, [pollQuestion]);
 
 	const handleVoteClick = (e) => {
 

@@ -26,7 +26,7 @@ const Leaderboard = () => {
 			{Object.keys(users)
 				.sort((a, b) => (Object.keys(users[b].questions).length < Object.keys(users[a].questions).length ? -1 : Object.keys(users[b].questions).length === Object.keys(users[a].questions).length ? Object.keys(users[b].answers).length - Object.keys(users[a].answers).length : 1))
 				.map((id) => (
-					<div>
+					<div key={users[id].id}>
 						<ListItem alignItems = "flex-start" className = "leaderboardListItem">
 							<ListItemAvatar>
 								<Avatar alt = "{ users[id] && users[id].name }"
@@ -37,29 +37,27 @@ const Leaderboard = () => {
 							<ListItemText
 								primary = {users[id].name}
 								secondary = {
-									<div className = "leaderboardListItemTypography">
-										<Fragment>
-											<Typography
-												sx = {{ display: 'inline' }}
-												component = "span"
-												variant = "body2"
-												color = "text.primary"
-											>
-												{`Created: ${Object.keys(users[id].questions).length}`}
-											</Typography>
-										</Fragment>
+									<Fragment>
+										<Typography
+											sx={{ display: 'inline' }}
+											component="span"
+											variant="body2"
+											color="text.primary"
+										>
+											{`Created:`}
+										</Typography>
+										{` ${Object.keys(users[id].questions).length} | `}
 
-										<Fragment>
-											<Typography
-												sx = {{ display: 'inline' }}
-												component = "span"
-												variant = "body2"
-												color = "text.primary"
-											>
-												{`Answered: ${Object.keys(users[id].answers).length}`}
-											</Typography>
-										</Fragment>
-									</div>
+										<Typography
+											sx={{ display: 'inline' }}
+											component="span"
+											variant="body2"
+											color="text.primary"
+										>
+											{`Answered: `}
+										</Typography>
+										{` ${Object.keys(users[id].answers).length}`}
+									</Fragment>
 								}
 							/>
 						</ListItem>

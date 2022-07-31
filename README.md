@@ -1,10 +1,26 @@
 # Employee Polls Project
 
 This is a submission for the final assessment project for Udacity's React & Redux course.
+The application allow employees to create questions and also vote on questions (polls). An employee can
+only vote once on a question. A question that the employee voted on also always displays metrics that
+also includes the total votes and percentage share, for each of the answer options.
+
+Additionally a leaderboard is feature, where employees are listed and sorted by first the number of questions
+asked, and then number answered, in descending order.
+
+The dashboard also shows all the questions grouped according to 'Unanswered' (shown by default) vs 'Answered' and sorted
+and sorted descending, according to creation date.
 
 The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
 
 Using the provided starter code, a React/Redux front end for the application, has been built using the recommended [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+
+## TL;DR
+
+To run the project:
+
+* install all project dependencies with `npm install` or `yarn install`
+* start the development server with `npm start` or `yarn start`
 
 ## Data
 

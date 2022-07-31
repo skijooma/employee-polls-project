@@ -7,7 +7,7 @@ export const ADD_QUESTION = "ADD_QUESTION";
 export const ANSWER_QUESTION = "ANSWER_QUESTION";
 export const SAVE_QUESTION_CHOICE = "SAVE_QUESTION_CHOICE";
 
-export default function receiveQuestions (questions) {
+export default function receiveQuestions(questions) {
 
 	return {
 		type: RECEIVE_QUESTIONS,
@@ -34,12 +34,13 @@ export function handleAddQuestion(optionOneText, optionTwoText, author) {
 			author,
 		})
 			.then((question) => {
-				dispatch(addQuestion(question))})
+				dispatch(addQuestion(question))
+			})
 			.then(() => dispatch(hideLoading()));
 	};
 }
 
-export function saveQuestionChoice ({ authedUser, qid, answer }) {
+export function saveQuestionChoice({ authedUser, qid, answer }) {
 
 	return {
 		type: SAVE_QUESTION_CHOICE,
@@ -49,16 +50,16 @@ export function saveQuestionChoice ({ authedUser, qid, answer }) {
 	}
 }
 
-export function handleQuestionChoice (info) {
+export function handleQuestionChoice(info) {
 
 	return (dispatch) => {
 		dispatch(saveQuestionChoice(info));
 
 		return saveQuestionAnswer(info)
 			.catch((e) => {
-			console.warn("Error saving questionAnswer => ", e);
+				console.warn("Error saving questionAnswer => ", e);
 
-			/* TODO: Dispatch action to undo voting. */
-		})
+				/* TODO: Dispatch action to undo voting. */
+			})
 	}
 }

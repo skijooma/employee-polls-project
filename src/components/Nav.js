@@ -18,21 +18,17 @@ import setAuthedUser from "../actions/authedUser";
 
 
 const pages = ['home', 'leaderboard', 'add'];
-const settings = ['Logout'];
 
 const Nav = () => {
 
 	const { authedUser, users } = useSelector(state => state);
 	const [user, setUser] = useState(users[authedUser]);
-	// const [logInState, setLogInState] = useState(authedUser);
 	const [logInStateText, setLogInStateText] = useState("");
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		setUser(users[authedUser]);
-		// setLogInState(authedUser);
 		users[authedUser] ? setLogInStateText("Logout") : setLogInStateText("Login");
-		console.log("USER ======== ", users[authedUser]);
 	}, [authedUser, users]);
 
 	const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -107,7 +103,7 @@ const Nav = () => {
 
 							{user && (
 								<Typography variant = "body2" color = "white" fontWeight = "bold" letterSpacing = {0.3}
-											margin = {2} data-testid="name">
+											margin = {2} data-testid = "name">
 									{user.name}
 								</Typography>
 							)}

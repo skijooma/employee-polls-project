@@ -1,4 +1,3 @@
-
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -14,11 +13,6 @@ export default function QuestionSummaryCard(props) {
 
 	const { question } = props;
 
-	const goToQuestionDetails = () => {
-
-		console.log("Going to details...")
-	}
-
 	return (
 		<Box sx = {{ minWidth: 275 }} className = "questionSummaryBox">
 			<Card variant = "outlined" className = "questionSummaryCard">
@@ -32,7 +26,7 @@ export default function QuestionSummaryCard(props) {
 						</Typography>
 					</CardContent>
 					<CardActions>
-						<Button size = "medium" color = "secondary" onClick = {goToQuestionDetails} fullWidth>
+						<Button size = "medium" color = "secondary" fullWidth>
 							<Link to = {`/questions/${question.id}`}>Show</Link>
 						</Button>
 					</CardActions>

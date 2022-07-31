@@ -22,7 +22,7 @@ describe('test saving a question', () => {
 		);
 	});
 
-	it("should verify that an error is returned if an invalid question is provided", async() => {
+	it("should verify that an error is returned if an invalid question is provided", async () => {
 		let question = {
 			optionOneText: "Mock option one",
 			optionTwoText: "Mock option two",
@@ -42,7 +42,7 @@ describe('test saving a question-answer', () => {
 		expect(result).toEqual(true);
 	});
 
-	it("should verify that an error is returned if an invalid question-answer is provided", async() => {
+	it("should verify that an error is returned if an invalid question-answer is provided", async () => {
 		let questionAnswer = {
 			authedUser: "mtsamis",
 			qid: "vthrdm985a262al8qx3do",

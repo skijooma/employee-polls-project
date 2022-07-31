@@ -1,5 +1,4 @@
-
-export default function getVoteMetrics (pollQuestion) {
+export default function getVoteMetrics(pollQuestion) {
 
 	const optionOneVoteCount = pollQuestion.optionOne.votes.length;
 	const optionTwoVoteCount = pollQuestion.optionTwo.votes.length;

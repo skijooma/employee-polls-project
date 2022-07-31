@@ -1,19 +1,9 @@
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-// import { handleAnswerQuestion } from "../actions/questions";
+import { useDispatch, useSelector } from "react-redux";
 import { handleAnswerQuestion } from "../actions/shared";
 import getVoteMetrics from "../utils/PollMetrics";
-
-/*
- * 1. Radio buttons for selecting? -> One button for submit?.
- * 2. 2 text views
- * 3. 2 options
- * 4. 2 indicators for votes cast.
- *
- *  */
 
 
 const BallotBox = (props) => {
@@ -29,11 +19,8 @@ const BallotBox = (props) => {
 
 	const handleVoteClick = (e) => {
 
-		console.log("Vote click => ", e.target.value);
-		console.log("Voted??", users[authedUser].answers.hasOwnProperty(pollQuestion.id), " - ", pollQuestion.id);
-
 		if (users[authedUser].answers.hasOwnProperty(pollQuestion.id)) {
-			console.log("You already voted on this question!", users[authedUser].answers.hasOwnProperty(e.target.value))
+			console.log("You already voted on this question!");
 		} else {
 			dispatch(handleAnswerQuestion({
 				authedUser,
@@ -45,7 +32,8 @@ const BallotBox = (props) => {
 
 	return (
 		<div className = "ballotBox">
-			<div className = {((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionOne.votes.includes(authedUser))) ? "ballotVoted" : "ballot"}>
+			<div
+				className = {((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionOne.votes.includes(authedUser))) ? "ballotVoted" : "ballot"}>
 				<div className = "ballotText">
 					<div className = "voteQuestionText">
 						<Typography variant = "body2" color = "text.secondary">
@@ -60,14 +48,16 @@ const BallotBox = (props) => {
 							</Typography>
 						</div>)}
 				</div>
-				<Button size = "medium" color = "secondary" onClick = {handleVoteClick} id = "optionOne" value = "optionOne">
-					{((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionOne.votes.includes(authedUser)))?
-						"Voted":
+				<Button size = "medium" color = "secondary" onClick = {handleVoteClick} id = "optionOne"
+						value = "optionOne">
+					{((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionOne.votes.includes(authedUser))) ?
+						"Voted" :
 						"Vote"}
 				</Button>
 			</div>
 
-			<div className = {((pollQuestion.optionTwo.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser))) ? "ballotVoted" : "ballot"}>
+			<div
+				className = {((pollQuestion.optionTwo.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser))) ? "ballotVoted" : "ballot"}>
 				<div className = "ballotText">
 					<div className = "voteQuestionText">
 						<Typography variant = "body2" color = "text.secondary">
@@ -83,8 +73,8 @@ const BallotBox = (props) => {
 						</div>)}
 				</div>
 				<Button size = "small" onClick = {handleVoteClick} id = "optionTwo" value = "optionTwo">
-					{((pollQuestion.optionTwo.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser)))?
-						"Voted":
+					{((pollQuestion.optionTwo.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser))) ?
+						"Voted" :
 						"Vote"}
 				</Button>
 			</div>

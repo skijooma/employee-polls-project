@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
-import { fireEvent, render } from '@testing-library/react'
-import { screen } from "@testing-library/react"
+import { render, screen } from '@testing-library/react'
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router";
 import { createStore } from "redux";
@@ -16,7 +15,7 @@ describe('Navigation bar', () => {
 		const component = render(
 			<MemoryRouter>
 				<Provider store = {store}>
-					<Nav />
+					<Nav/>
 				</Provider>
 			</MemoryRouter>
 		);
@@ -28,7 +27,7 @@ describe('Navigation bar', () => {
 		const component = render(
 			<MemoryRouter>
 				<Provider store = {store}>
-					<Nav />
+					<Nav/>
 				</Provider>
 			</MemoryRouter>
 		);

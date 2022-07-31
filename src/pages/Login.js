@@ -14,34 +14,26 @@ const Login = () => {
 	const [password, setPassword] = useState("");
 	const [authenticated, setAuthenticated] = useState(false);
 	const navigate = useNavigate();
-	const redirectPath = (location && location.state) ? location.state.path: "/login";
+	const redirectPath = (location && location.state) ? location.state.path : "/login";
 
 	useEffect(() => {
 		if (authedUser) {
 			setAuthenticated(true);
-			console.log("AUTHED_USER CHANGED => ", authenticated)
 		}
 	}, [authedUser]);
 
 	const handleUsernameChange = (e) => {
 		const value = e.target.value;
-
-		console.log(value);
 		setUsername(value)
 	};
 
 	const handlePasswordChange = (e) => {
 		const value = e.target.value;
-
-		console.log(value);
 		setPassword(value)
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
-		console.log("Username: ", username);
-		console.log("Password: ", password);
 
 		dispatch(handleLogin({ username, password }));
 
@@ -59,16 +51,16 @@ const Login = () => {
 		<div className = "loginContainer">
 			<h3>Login</h3>
 			<form className = "loginForm" onSubmit = {handleSubmit}>
-				{/* TODO: Redirect to / if submitted */}
 				<FormControl fullWidth sx = {{ m: 1 }} variant = "standard">
 					<TextField id = "username" label = "Username" variant = "outlined" value = {username}
-							   onChange = {handleUsernameChange} data-testid="username"/>
+							   onChange = {handleUsernameChange} data-testid = "username"/>
 				</FormControl>
 				<FormControl fullWidth sx = {{ m: 1 }} variant = "standard">
 					<TextField id = "password" label = "Password" variant = "outlined" value = {password}
-							   onChange = {handlePasswordChange} data-testid="password"/>
+							   onChange = {handlePasswordChange} data-testid = "password"/>
 				</FormControl>
-				<button className = "btn" type = "submit" disabled = {username === "" || password === ""} data-testid="login-button">
+				<button className = "btn" type = "submit" disabled = {username === "" || password === ""}
+						data-testid = "login-button">
 					Submit
 				</button>
 			</form>

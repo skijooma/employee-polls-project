@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react'
 import { Provider } from "react-redux";
-import { MemoryRouter, useLocation } from "react-router";
+import { MemoryRouter } from "react-router";
 import { createStore } from "redux";
 import middleware from "../middleware";
 import reducer from "../reducers";
@@ -16,7 +16,7 @@ describe('Login page', () => {
 		const component = render(
 			<MemoryRouter>
 				<Provider store = {store}>
-					<Login />
+					<Login/>
 				</Provider>
 			</MemoryRouter>
 		);

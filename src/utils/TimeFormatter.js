@@ -1,7 +1,7 @@
-
 import moment from "moment";
 
-export default function formatTime (timestamp) {
+
+export default function formatTime(timestamp) {
 
 	const date = new Date(timestamp);
 

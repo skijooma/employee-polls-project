@@ -20,33 +20,23 @@ const NewQuestion = () => {
 	useEffect(() => {
 		if (authedUser) {
 			setAuthenticated(true);
-			console.log("AUTHENTICATION STATE IN ADD => ", authenticated, " ", authedUser)
 		}
 	}, [authedUser, authenticated]);
 
 	const handleOptionOneChange = (e) => {
 		const value = e.target.value;
-
-		console.log(value);
 		setOptionOneText(value)
 	};
 
 	const handleOptionTwoChange = (e) => {
 		const value = e.target.value;
-
-		console.log(value);
 		setOptionTwoText(value)
 	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		// TODO: Add Question to store.
-
 		if (optionOneText !== "" && optionTwoText !== "") {
-			console.log("optionOneText: ", optionOneText);
-			console.log("optionTwoText: ", optionTwoText);
-
 			dispatch(handleAddQuestion(optionOneText, optionTwoText, authedUser));
 
 			/* Reset form values and redirect user to the questions page. */
@@ -73,8 +63,6 @@ const NewQuestion = () => {
 		<div className = "newQuestionContainer">
 			<h3 className = "center">Pose a question</h3>
 			<form className = "newQuestionForm" onSubmit = {handleSubmit}>
-				{/* TODO: Redirect to / if submitted */}
-
 				<FormControl fullWidth sx = {{ m: 1 }} variant = "standard">
 					<TextField id = "option-one" label = "Option one" variant = "outlined" value = {optionOneText}
 							   maxLength = {100} onChange = {handleOptionOneChange}/>
@@ -90,12 +78,13 @@ const NewQuestion = () => {
 				</FormControl>
 
 				<button className = "btn " type = "submit" size = "medium" color = "secondary"
-						data-testid="submit-question">
+						data-testid = "submit-question">
 					Submit
 				</button>
 			</form>
-			<Snackbar open = {pollError} autoHideDuration = {6000} onClose = {handleClose} data-testid="poll-error-message">
-				<Alert onClose = {handleClose} severity = "error" sx = {{ width: '100%' }} >
+			<Snackbar open = {pollError} autoHideDuration = {6000} onClose = {handleClose}
+					  data-testid = "poll-error-message">
+				<Alert onClose = {handleClose} severity = "error" sx = {{ width: '100%' }}>
 					Please provide both choice options for the question!
 				</Alert>
 			</Snackbar>

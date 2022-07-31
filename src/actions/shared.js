@@ -1,9 +1,9 @@
-import { getInitialData, saveQuestionAnswer } from "../utils/api";
+import { hideLoading, showLoading } from "react-redux-loading-bar";
+import { getInitialData } from "../utils/api";
 import setAuthedUser from "./authedUser";
-import receiveQuestions, { handleQuestionChoice, saveQuestionChoice } from "./questions"
+import receiveQuestions, { handleQuestionChoice } from "./questions"
 import setSelectedTab from "./selectedTab";
-import receiveUsers, { handleUserAnswer, saveUserAnswer } from "./users";
-import { showLoading, hideLoading } from "react-redux-loading-bar";
+import receiveUsers, { handleUserAnswer } from "./users";
 
 
 const AUTHED_ID = null // "tylermcginnis";

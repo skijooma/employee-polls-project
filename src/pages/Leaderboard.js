@@ -18,7 +18,6 @@ const Leaderboard = () => {
 	useEffect(() => {
 		if (authedUser) {
 			setAuthenticated(authedUser);
-			console.log("AUTHENTICATION STATE IN LEADERBOARD => ", authenticated, " ", authedUser);
 		}
 	}, [authedUser]);
 

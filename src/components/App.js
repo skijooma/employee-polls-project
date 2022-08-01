@@ -58,7 +58,9 @@ const App = () => {
 				}/>
 
 				<Route path = "*" element = {
-					<NotFoundPage/>
+					<ProtectedRoute user = {authedUser}>
+						<NotFoundPage/>
+					</ProtectedRoute>
 				}/>
 
 				<Route path = "/login" element = {<Login/>}/>

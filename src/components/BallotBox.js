@@ -33,7 +33,7 @@ const BallotBox = (props) => {
 	return (
 		<div className = "ballotBox">
 			<div
-				className = {((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionOne.votes.includes(authedUser))) ? "ballotVoted" : "ballot"}>
+				className = {((pollQuestion.optionOne.votes.includes(authedUser))) ? "ballotVoted" : "ballot"}>
 				<div className = "ballotText">
 					<div className = "voteQuestionText">
 						<Typography variant = "body2" color = "text.secondary">
@@ -41,7 +41,7 @@ const BallotBox = (props) => {
 						</Typography>
 					</div>
 
-					{((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionOne.votes.includes(authedUser))) &&
+					{((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser))) &&
 						(<div className = "voteShareMetrics">
 							<Typography variant = "body2" color = "text.secondary">
 								{` ${pollMetrics.optionOnePercentage}% (${pollMetrics.optionOneVoteCount})`}
@@ -57,7 +57,7 @@ const BallotBox = (props) => {
 			</div>
 
 			<div
-				className = {((pollQuestion.optionTwo.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser))) ? "ballotVoted" : "ballot"}>
+				className = {((pollQuestion.optionTwo.votes.includes(authedUser))) ? "ballotVoted" : "ballot"}>
 				<div className = "ballotText">
 					<div className = "voteQuestionText">
 						<Typography variant = "body2" color = "text.secondary">
@@ -65,7 +65,7 @@ const BallotBox = (props) => {
 						</Typography>
 					</div>
 
-					{((pollQuestion.optionTwo.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser))) &&
+					{((pollQuestion.optionOne.votes.includes(authedUser)) || (pollQuestion.optionTwo.votes.includes(authedUser))) &&
 						(<div className = "voteShareMetrics">
 							<Typography variant = "body2" color = "text.secondary">
 								{` ${pollMetrics.optionTwoPercentage}% (${pollMetrics.optionTwoVoteCount})`}

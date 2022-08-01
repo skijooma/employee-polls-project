@@ -10,7 +10,7 @@ const QuestionDetails = () => {
 	const { users, questions, authedUser, loading } = useSelector(state => state);
 	const { id } = useParams(); // QuestionId in route params.
 	const question = questions[id];
-	const user = users[question.author];
+	const user = question ? users[question.author] : null;
 
 	/* Local state variables */
 	const [authenticated, setAuthenticated] = useState();

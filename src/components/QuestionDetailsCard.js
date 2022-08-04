@@ -5,7 +5,6 @@ import CardHeader from '@mui/material/CardHeader';
 import { red } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-import { Navigate } from "react-router";
 import NotFoundPage from "../pages/NotFoundPage";
 import formatTime from "../utils/TimeFormatter";
 import BallotBox from "./BallotBox";

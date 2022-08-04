@@ -28,14 +28,17 @@ const Dashboard = () => {
 			questions :
 			selectedTab === 1 ?
 				(q.optionOne.votes && q.optionOne.votes.includes(authedUser)) || (q.optionTwo.votes && q.optionTwo.votes.includes(authedUser)) :
-				(q.optionOne.votes && !q.optionOne.votes.includes(authedUser)) && (q.optionTwo.votes && !q.optionTwo.votes.includes(authedUser)));
+				(q.optionOne.votes && !q.optionOne.votes.includes(authedUser)) && (q.optionTwo.votes && !q.optionTwo.votes.includes(authedUser)))
+			.reduce((accumulator, value) => {
+				return { ...accumulator, [value.id]: value };
+			}, {});
 
-		sortedFilteredQuestions = Object.keys(filteredQuestions)
+		sortedFilteredQuestions = Object.entries(filteredQuestions)
 			.sort((a, b) => {
-				return filteredQuestions[b].timestamp - filteredQuestions[a].timestamp
-			});
+				return b[1].timestamp - a[1].timestamp
+			}).reduce((acc, [a, b]) => ({ ...acc, [a]: b }), {});
 
-		return filteredQuestions;
+		return sortedFilteredQuestions;
 	}
 
 	return (
